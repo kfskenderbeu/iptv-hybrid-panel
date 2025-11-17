@@ -1,0 +1,40 @@
+# Configuration files
+config.php
+.env
+*.local.php
+
+# Database
+*.sql.backup
+database/backups/
+
+# Logs
+*.log
+logs/
+error_log
+
+# Cache
+cache/
+*.cache
+
+# Uploads
+uploads/
+temp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies
+vendor/
+node_modules/
+
+# Build
+dist/
+build/
