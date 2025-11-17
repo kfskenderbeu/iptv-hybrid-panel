@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IPTV Hybrid Panel - P2P/CDN Hidden Layer System">
+    <title>📡 IPTV Hybrid Panel</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        /* Loading Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 20px;
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        /* Feature Highlights */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            font-size: 0.95em;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        /* Notification Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            border-left: 4px solid #2ecc71;
+        }
+
+        .toast.error {
+            border-left: 4px solid #e74c3c;
+        }
+
+        .toast.info {
+            border-left: 4px solid #3498db;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="spinner"></div>
+        <div class="loading-text">Duke ngarkuar IPTV Panel...</div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Main App Container -->
+    <div id="root">
+        <!-- React do të render këtu -->
+    </div>
+
+    <!-- Welcome Screen për përdorues të parë -->
+    <div id="welcomeScreen" style="display: none;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h1 style="font-size: 3em; margin-bottom: 10px;">📡 Mirësevini në IPTV Hybrid Panel</h1>
+                <p style="font-size: 1.2em; opacity: 0.9;">
+                    Sistemi më i avancuar i streaming-ut me P2P, CDN dhe Hidden Layer
+                </p>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <div class="feature-title">P2P Accelerated</div>
+                    <div class="feature-desc">
+                        Streaming i shpejtë përmes rrjetit peer-to-peer. 
+                        Reduktoni bandwidth deri në 70% dhe përmirësoni performancën.
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <div class="feature-title">Multi-CDN Support</div>
+                    <div class="feature-desc">
+                        CDN backup automatik me node-ve në të gjithë botën. 
+                        Zero downtime dhe latency minimal.
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-title">Hidden Layer Security</div>
+                    <div class="feature-desc">
+                        Enkriptim RSA 2048-bit dhe multi-hop routing për 
+                        sigurinë dhe anonimitetin maksimal.
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">Real-time Analytics</div>
+                    <div class="feature-desc">
+                        Monitorim në kohë reale të P2P/CDN ratio, bandwidth, 
+                        dhe të gjitha metrikat e streaming-ut.
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Adaptive Streaming</div>
+                    <div class="feature-desc">
+                        Quality adjustment automatik bazuar në bandwidth. 
+                        HLS support me buffer minimal.
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-title">Smart Load Balancing</div>
+                    <div class="feature-desc">
+                        Zgjedhja automatike e burimit optimal (P2P ose CDN) 
+                        për performance më të mirë.
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <button 
+                    onclick="document.getElementById('welcomeScreen').style.display='none'; document.getElementById('root').style.display='block';"
+                    style="padding: 15px 40px; font-size: 1.2em; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 10px; color: white; cursor: pointer; font-weight: bold; transition: all 0.3s;"
+                    onmouseover="this.style.transform='scale(1.05)'"
+                    onmouseout="this.style.transform='scale(1)'"
+                >
+                    🚀 Fillo Tani
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.12"></script>
+    
+    <script>
+        // Toast Notification Function
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type}`;
+            setTimeout(() => toast.classList.add('show'), 100);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Hide loading screen when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loadingScreen');
+                loadingScreen.classList.add('hidden');
+                
+                // Kontrollo nëse është vizita e parë
+                const isFirstVisit = !localStorage.getItem('visited');
+                if (isFirstVisit) {
+                    document.getElementById('welcomeScreen').style.display = 'block';
+                    document.getElementById('root').style.display = 'none';
+                    localStorage.setItem('visited', 'true');
+                } else {
+                    document.getElementById('root').style.display = 'block';
+                }
+            }, 1000);
+        });
+
+        // Performance monitoring
+        if (window.performance && window.performance.timing) {
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    const perfData = window.performance.timing;
+                    const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+                    console.log(`⚡ Page loaded in ${pageLoadTime}ms`);
+                }, 0);
+            });
+        }
+
+        // Connection status monitoring
+        window.addEventListener('online', () => {
+            showToast('✅ Lidhja u rivendos', 'success');
+        });
+
+        window.addEventListener('offline', () => {
+            showToast('❌ Lidhja u ndërpre', 'error');
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // F (Fullscreen)
+            if (e.key === 'f' || e.key === 'F') {
+                const video = document.querySelector('video');
+                if (video && document.fullscreenEnabled) {
+                    if (!document.fullscreenElement) {
+                        video.requestFullscreen();
+                    } else {
+                        document.exitFullscreen();
+                    }
+                }
+            }
+            
+            // Space (Play/Pause)
+            if (e.key === ' ' && e.target.tagName !== 'INPUT') {
+                e.preventDefault();
+                const video = document.querySelector('video');
+                if (video) {
+                    video.paused ? video.play() : video.pause();
+                }
+            }
+        });
+    </script>
+
+    <!-- Main App Script (në prodhim do të jetë bundled) -->
+    <script type="module">
+        // Këtu do të loadohet React app
+        import IPTVPlayer from '/src/IPTVPlayer.jsx';
+        
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(React.createElement(IPTVPlayer));
+    </script>
+</body>
+</html>
